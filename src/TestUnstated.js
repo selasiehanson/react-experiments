@@ -1,6 +1,6 @@
 import React , { Component} from 'react';
 
-import MusicLibrary from './MusicLibrary';
+import OrderSomeFood from './OrderSomeFood';
 
 export class TestUnstated extends Component {
 
@@ -8,7 +8,7 @@ export class TestUnstated extends Component {
 
     return (
       <div>
-        <MusicLibrary />
+        <OrderSomeFood />
       </div>
     )
   }

@@ -4,50 +4,13 @@ import React, {
 import styled  from 'styled-components'
 import { Provider, Subscribe, Container} from 'unstated';
 import { Button } from '../Form'
+import { MenuStore} from './stores/MenuStore';
+import { OrderStore} from './stores/OrderStore';
 
 const Editor = styled.div`
   display: flex;
 `;
 
-class MenuStore extends Container {
-  state = {
-    menu: [
-      {name: "Shrimp Tacos", price: 10.99, currency: "$"},
-      {name: "Chicken Tacos", price: 10.99, currency: "$"},
-      {name: "Beef Tacos", price: 10.99, currency: "$"},
-      {name: "Buffalo Chicken Wings", price: 10.99, currency: "$"},
-      {name: "French fries", price: 10.99, currency: "$"},
-      {name: "Bacon Egss and Cheese Sandwich", price: 10.99, currency: "$"},
-      {name: "Cold Cut Combo Sandwich", price: 10.99, currency: "$"},
-      {name: "Hamburger", price: 10.99, currency: "$"},
-      {name: "Cheeseburger", price: 10.99, currency: "$"},
-    ]
-  };
-}
-
-const calculateLineTotal = (price, quantity) => price * quantity;
-
-class OrderStore extends Container {
-  state = {
-    orders: []
-  }
-
-  addOrder = (order) => {
-    const existingOrderIndex = this.state.orders.findIndex(o => o.name === order.name);
-    if(existingOrderIndex === -1) {
-      this.setState({ orders: [...this.state.orders, {...order, quantity: 1}] });
-    } else {
-      const before = this.state.orders.slice(0, existingOrderIndex)
-      const after = this.state.orders.slice(existingOrderIndex + 1);
-      const existingOrder = this.state.orders[existingOrderIndex];
-      const quantity = existingOrder.quantity + 1;
-      const price = calculateLineTotal(order.price,quantity);
-      const updatedOrder = {...existingOrder, quantity, price };
-
-      this.setState({orders: [...before, updatedOrder ,...after]});
-    }
-  }
-}
 
 const MenuItemRoot = styled.div`
   font-size: 16px;
@@ -65,11 +28,18 @@ const ItemRow = styled.div`
 const NameAndAddButton = ItemRow.extend`
   justify-content: space-between;
 `;
+
+const MenuItemName = styled.div`
+  font-family: cursive;
+`;
+
 const MenuItem = ({name, currency, price, addItem}) => {
   return (
     <MenuItemRoot>
       <NameAndAddButton>
-        {name}
+        <MenuItemName>
+          {name}
+        </MenuItemName>
         <Button small onClick={() => addItem({name, price})}>Add</Button>
       </NameAndAddButton>
       <ItemRow>
@@ -88,6 +58,7 @@ const OrderItemRoot = styled.div`
 
 const OrderName = styled.div`
   flex: 1;
+  font-family: cursive;
 `;
 
 const OrderPrice = styled.div`
@@ -164,11 +135,27 @@ const Orders = ({albums}) => {
   )
 }
 
+const OrderHeaderRoot = styled.div`
+  display: flex;
+  color: #4db014;
+  padding: 1rem;
+  font-size: 32px;
+  font-family: fantasy;
+`
 
-export default class MusicLibrary extends Component {
+const OrderHeader = () => {
+  return (
+    <OrderHeaderRoot>
+      Eat Something!!
+    </OrderHeaderRoot>
+  )
+}
+
+export default class OrderSomeFood extends Component {
   render () {
     return (
       <Provider>
+        <OrderHeader />
         <Editor>
           <Menu></Menu>
           <Orders />

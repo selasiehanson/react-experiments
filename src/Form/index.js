@@ -12,8 +12,8 @@ const Button = styled.button`
 	background: ${props => props.primary ? 'green' : 'white'};
 	color: ${props => props.primary ? 'white' : '#545454'};
 
-	font-size: 1em;
-	padding: 0.5em 1em;
+	font-size: ${props => props.small ? '0.6em' : '1em'};
+	padding: ${props => props.small ? '0.5em' : '0.5em 1em'};
 	border: 1px solid ${Colors.border};
 	border-radius: 3px;
 	margin-right: 0.3em;
