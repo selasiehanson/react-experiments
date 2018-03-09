@@ -12,7 +12,6 @@ const TabHeader  = styled.div`
   border-bottom: 1px solid ${colors.border};
 `;
 
-
 const TabContent  = styled.div`
   display: flex;
   padding: 1rem;
@@ -29,6 +28,11 @@ const TabHead = styled.span`
   border-top-right-radius: 4px;
   border-color: ${colors.border};
   padding: 0.5rem 1rem;
+
+  &:hover {
+		cursor: pointer;
+	}
+
 `;
 const TabTitle = ({name, title, isActive, onTabSelected} ) => {
   return (

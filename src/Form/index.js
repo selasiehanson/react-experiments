@@ -55,7 +55,6 @@ const Label = styled.label`
 	padding: 0.5em 0;
 	font-size: 1em;
 	color: ${Colors.label}
-`
-
+`;
 
 export  { Button,Input, Label }
