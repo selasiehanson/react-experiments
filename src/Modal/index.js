@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const HeaderTitle = styled.span`
   font-size: 21px;
-`
+`;
 
 const Header = styled.div`
   border-bottom: 1px solid #dedede;

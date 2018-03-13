@@ -141,13 +141,30 @@ const OrderHeaderRoot = styled.div`
   padding: 1rem;
   font-size: 32px;
   font-family: fantasy;
-`
+  justify-content: space-between;
+`;
+
+const OrderSummary = styled.span`
+  color: #8b0303;
+`;
 
 const OrderHeader = () => {
   return (
-    <OrderHeaderRoot>
-      Eat Something!!
-    </OrderHeaderRoot>
+    <Subscribe to={[OrderStore]}>
+      {
+        (orderStore) => (
+          <OrderHeaderRoot>
+            <span>
+              Eat Something!!
+            </span>
+
+            <OrderSummary>
+              ${orderStore.totalPrice()} for {orderStore.total()} items.
+            </OrderSummary>
+          </OrderHeaderRoot>
+        )
+      }
+    </Subscribe>
   )
 }
 

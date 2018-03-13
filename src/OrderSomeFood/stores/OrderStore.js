@@ -22,4 +22,14 @@ export class OrderStore extends Container {
       this.setState({orders: [...before, updatedOrder ,...after]});
     }
   }
+
+  total = () => {
+    return this.state.orders.length;
+  }
+
+  totalPrice = () => {
+    return this.state.orders.reduce((soFar, order) =>  {
+      return soFar + order.price;
+    }, 0).toFixed(2);
+  }
 }
